@@ -1,11 +1,10 @@
 "use client"
 
-import { useState } from "react"
-import { Search, Phone, MoreVertical, Smile, Paperclip, Send } from "lucide-react"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Header } from "@/components/header"
+import { Input } from "@/components/ui/input"
+import { MoreVertical, Paperclip, Phone, Search, Send, Smile } from "lucide-react"
 import Image from "next/image"
+import { useState } from "react"
 
 interface Conversation {
   id: string
@@ -103,8 +102,7 @@ export function ChatContent() {
   )
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <div className="flex bg-background">
       <div className="flex h-[calc(100vh-73px)]">
         {/* Left Sidebar - Conversation List */}
         <div className="w-64 border-r border-border bg-background flex flex-col">

@@ -4,15 +4,19 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Eye, EyeOff, Facebook, Cookie as Google, Lock, Mail } from "lucide-react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { Suspense, useState } from "react"
 
 import { useAppDispatch } from "@/redux/hooks"
 import { setAuth } from "@/redux/slices/authSlice"
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const dispatch = useAppDispatch()
+
+  const callbackUrl = searchParams.get("callbackUrl") || "/home"
+
   const [isLogin, setIsLogin] = useState(true)
   const [userType, setUserType] = useState<"customer" | "spa" | "driver">("customer")
   const [showPassword, setShowPassword] = useState(false)
@@ -31,7 +35,7 @@ export default function LoginPage() {
         refreshToken: "mock_refresh_token",
       })
     )
-    router.push("/home")
+    router.push(callbackUrl)
   }
 
   return (
@@ -193,5 +197,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginContent />
+    </Suspense>
   )
 }

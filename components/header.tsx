@@ -11,6 +11,10 @@ export function Header() {
   const dispatch = useAppDispatch()
   const { profile, isAuthenticated } = useAppSelector((state) => state.auth)
 
+  if (!isAuthenticated || !profile) {
+    return null
+  }
+
   const handleLogout = () => {
     dispatch(clearAuth())
     router.push("/login")

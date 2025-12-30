@@ -1,10 +1,9 @@
 "use client"
 
-import { useState } from "react"
-import { Header } from "@/components/header"
-import { Search, MapPin, Clock, Plus, Minus, Navigation } from "lucide-react"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Clock, MapPin, Minus, Navigation, Plus, Search } from "lucide-react"
+import { useState } from "react"
 
 // Mock data for active orders
 const mockOrders = [
@@ -56,8 +55,7 @@ export function TrackingContent() {
   const [activeTab, setActiveTab] = useState("all")
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <div className="flex bg-background">
 
       <div className="flex h-[calc(100vh-73px)]">
         {/* Left Sidebar */}

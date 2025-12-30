@@ -1,11 +1,11 @@
-import { Header } from "@/components/header"
-import { Button } from "@/components/ui/button"
-import { MapPin, Clock, Phone, Zap } from "lucide-react"
+"use client";
+import { AuthGuard } from "@/components/auth/auth-guard";
+import { Button } from "@/components/ui/button";
+import { Clock, MapPin, Phone, Zap } from "lucide-react";
 
 export default function OrderPage() {
   return (
-    <>
-      <Header />
+    <AuthGuard>
       <div className="min-h-screen bg-muted p-6">
         <div className="max-w-6xl mx-auto">
           {/* Breadcrumb */}
@@ -208,6 +208,6 @@ export default function OrderPage() {
           </div>
         </div>
       </div>
-    </>
+    </AuthGuard>
   )
 }

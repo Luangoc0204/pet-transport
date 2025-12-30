@@ -1,11 +1,10 @@
-"use client"
-
-import { useState } from "react"
-import { Menu, Search, Settings, Eye, Trash2, MapPin, ChevronLeft, ChevronRight } from "lucide-react"
-import { Header } from "@/components/header"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
+"use client";
+import { AuthGuard } from "@/components/auth/auth-guard";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ChevronLeft, ChevronRight, Eye, MapPin, Menu, Search, Settings, Trash2 } from "lucide-react";
+import { useState } from "react";
 
 interface Order {
   id: string
@@ -134,8 +133,7 @@ export default function ShipperDashboardPage() {
   }
 
   return (
-    <>
-      <Header />
+    <AuthGuard>
       <div className="flex min-h-screen bg-gray-50">
         {/* Sidebar */}
         <aside className="w-48 bg-white border-r border-border hidden md:block sticky top-0 h-screen overflow-y-auto">
@@ -356,6 +354,6 @@ export default function ShipperDashboardPage() {
           </div>
         </main>
       </div>
-    </>
+    </AuthGuard>
   )
 }

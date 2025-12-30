@@ -1,10 +1,14 @@
-import { Suspense } from "react"
-import { TrackingContent } from "@/components/tracking-content"
+"use client";
+import { AuthGuard } from "@/components/auth/auth-guard";
+import { TrackingContent } from "@/components/tracking-content";
+import { Suspense } from "react";
 
 export default function TrackingPage() {
   return (
-    <Suspense fallback={null}>
-      <TrackingContent />
-    </Suspense>
+    <AuthGuard>
+      <Suspense fallback={null}>
+        <TrackingContent />
+      </Suspense>
+    </AuthGuard>
   )
 }

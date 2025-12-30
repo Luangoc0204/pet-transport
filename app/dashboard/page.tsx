@@ -1,9 +1,9 @@
-import { Header } from "@/components/header"
+"use client";
+import { AuthGuard } from "@/components/auth/auth-guard";
 
 export default function DashboardPage() {
   return (
-    <>
-      <Header />
+    <AuthGuard>
       <div className="flex">
         {/* Sidebar */}
 
@@ -11,6 +11,6 @@ export default function DashboardPage() {
         {/* Main Content */}
 
       </div>
-    </>
+    </AuthGuard>
   )
 }
