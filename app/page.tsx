@@ -1,103 +1,176 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Eye, EyeOff, Facebook, Cookie as Google, Lock, Mail } from "lucide-react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+
+export default function LoginPage() {
+  const router = useRouter()
+  const [isLogin, setIsLogin] = useState(true)
+  const [userType, setUserType] = useState<"customer" | "spa" | "driver">("customer")
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted flex">
+      {/* Left Section */}
+      <div className="hidden lg:flex lg:w-1/2 bg-black relative overflow-hidden">
+        <img src="/brown-dog-portrait.jpg" alt="Pet Transport" className="w-full h-full object-cover opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-8">
+          <h1 className="text-4xl font-bold text-white mb-6 text-balance">
+            Kết nối hành trình cho người bạn bốn chân.
+          </h1>
+          <p className="text-gray-200 mb-8 text-lg text-balance">
+            Hệ thống vận chuyển thú cưng kết nối Chủ nuôi, Spa và Tài xế.
+          </p>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+              <div className="w-6 h-6 rounded-full bg-primary" />
+            </div>
+            <div>
+              <p className="font-semibold text-white">Minh Anh</p>
+              <p className="text-sm text-gray-300">"Dịch vụ tuyệt vời với Corgi nhà tôi"</p>
+            </div>
+          </div>
+          <div className="flex gap-1">
+            {[...Array(5)].map((_, i) => (
+              <span key={i} className="text-yellow-400">
+                ★
+              </span>
+            ))}
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* Right Section */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-8">
+        <div className="w-full max-w-sm">
+          {/* Header */}
+          <div className="mb-8 flex items-center gap-2">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">🐾</span>
+            </div>
+            <h1 className="text-xl font-bold">PetTransport</h1>
+          </div>
+
+          {/* Tabs */}
+          <div className="flex gap-4 mb-8 border-b border-border">
+            <button
+              onClick={() => setIsLogin(true)}
+              className={`py-2 px-1 font-medium transition-colors ${
+                isLogin ? "border-b-2 border-primary text-primary" : "text-muted-foreground"
+              }`}
+            >
+              Đăng nhập
+            </button>
+            <button
+              onClick={() => setIsLogin(false)}
+              className={`py-2 px-1 font-medium transition-colors ${
+                !isLogin ? "border-b-2 border-primary text-primary" : "text-muted-foreground"
+              }`}
+            >
+              Đăng ký
+            </button>
+          </div>
+
+          {/* Content */}
+          {!isLogin && (
+            <div className="mb-6">
+              <p className="text-sm font-medium text-foreground mb-3">Bạn là ai?</p>
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { id: "customer", label: "Khách hàng", icon: "👤" },
+                  { id: "spa", label: "Spa / Shop", icon: "🏪" },
+                  { id: "driver", label: "Tài xế", icon: "🚗" },
+                ].map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => setUserType(option.id as "customer" | "spa" | "driver")}
+                    className={`py-3 px-2 rounded-lg border-2 transition-all text-center text-sm ${
+                      userType === option.id
+                        ? "border-primary bg-primary/10"
+                        : "border-border hover:border-muted-foreground"
+                    }`}
+                  >
+                    <div className="text-2xl mb-1">{option.icon}</div>
+                    <div className="font-medium text-xs">{option.label}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Form */}
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium mb-2 block">
+                {isLogin ? "Email hoặc số điện thoại" : "Email hoặc số điện thoại"}
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-3 text-muted-foreground w-4 h-4" />
+                <Input type="text" placeholder="name@example.com" className="pl-10 bg-muted" />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium mb-2 block">Mật khẩu</label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-3 text-muted-foreground w-4 h-4" />
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Nhập mật khẩu của bạn"
+                  className="pl-10 bg-muted pr-10"
+                />
+                <button
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 text-muted-foreground hover:text-foreground"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <label className="flex items-center gap-2 text-sm cursor-pointer">
+                <input type="checkbox" className="w-4 h-4 rounded" />
+                Ghi nhớ đăng nhập
+              </label>
+              {isLogin && (
+                <Link href="#" className="text-sm text-primary hover:underline font-medium">
+                  Quên mật khẩu?
+                </Link>
+              )}
+            </div>
+
+            <Button onClick={() => {router.push("/dashboard")}} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-10 font-medium">
+              {isLogin ? "Đăng nhập" : "Đăng ký"}
+            </Button>
+
+            <p className="text-sm text-muted-foreground text-center">Hoặc tiếp tục với</p>
+
+            <div className="grid grid-cols-2 gap-3">
+              <Button variant="outline" className="gap-2 bg-background">
+                <Google className="w-4 h-4" />
+                <span className="hidden sm:inline">Google</span>
+              </Button>
+              <Button variant="outline" className="gap-2 bg-background">
+                <Facebook className="w-4 h-4" />
+                <span className="hidden sm:inline">Facebook</span>
+              </Button>
+            </div>
+
+            <p className="text-xs text-muted-foreground text-center">
+              Bằng việc đăng nhập, bạn đồng ý với{" "}
+              <Link href="#" className="text-primary hover:underline">
+                Điều khoản và Chính sách bảo mật
+              </Link>{" "}
+              của chúng tôi.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
